@@ -11,15 +11,21 @@
         ">
         <div style="margin: 30%; width: 40%; border: 4px solid lightgray;">
             <form id="task-input">
-                Title:<br />
+                Title:
+                <br />
                 <input required type="text" id="titleInput" placeholder="Enter title text" />
-                Priority:<br />
+                <br />
+                Priority:
+                <br />
                 <select required id="priorityInput">
                     <option value="Important">Important</option>
                     <option value="Medium">Medium</option>
                 </select>
-                Due Date: <br />
+                <br />
+                Due Date:
+                <br />
                 <input required type="date" id="dateInput" />
+                <br />
                 <input type="submit" />
             </form>
         </div>
@@ -74,9 +80,9 @@
             }
             document.getElementById('task-input').onsubmit = function (e) {
                 e.preventDefault();
-                const title = document.getElementById('titleInput');
-                const priority = document.getElementById('priorityInput');
-                const date = document.getElementById('dateInput');
+                const title = document.getElementById('titleInput').value;
+                const priority = document.getElementById('priorityInput').value;
+                const date = document.getElementById('dateInput').value;
                 const id = Math.random() + Date.now();
                 const task = { title, priority, date, id };
                 tasks.push(task);
