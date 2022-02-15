@@ -37,10 +37,14 @@
         <span id="delete-task">Delete</span><br />
     </div>
     <div style="width: 100%; display: flex; justify-content: center;">
-        <div style="width: 40%;">
-            <div>Tasks</div>
-            <div id="filter-tasks">Filter</div>
-            <table id="main-table"></table>
+        <div style="width: 40%; background: lightgray;">
+            <div style="display: flex; justify-content: space-between; border-top: 2px solid lightgray;
+            border-bottom: 2px solid lightgray; padding: 9px 0px;
+            ">
+                <div><strong>Tasks</strong></div>
+                <div id="filter-tasks">Filter</div>
+            </div>
+            <table id="main-table" style="border: 2px solid gray; width:100%;"></table>
             <div style="display:flex; flex-direction: row-reverse; width: 100%">
                 <button id="add-task">Add Task</button>
             </div>
