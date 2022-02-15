@@ -31,6 +31,11 @@
             </form>
         </div>
     </div>
+    <div style="position: absolute; z-index: 300; display:none;" id="options-menu">
+        <span id="progress-not-started">Progress: Not started</span>
+        <span id="progress-completed">Progress: Completed</span>
+        <span id="delete-task">Delete</span>
+    </div>
     <div style="width: 100%; display: flex; justify-content: center;">
         <div style="width: 40%;">
             <table id="main-table"></table>
@@ -41,8 +46,12 @@
     </div>
     <script>
         const mainTable = document.querySelector('#main-table');
-        const tasks = [{ title: "This is a test", priority: "Important", dueDate: "2021-02-02", id: 8762348 }];
+        let tasks = [{ title: "This is a test", priority: "Important", dueDate: "2021-02-02", id: 8762348 }];
         const taskModal = document.querySelector('#task-modal');
+        const progressNotStarted = document.querySelector('#progress-not-started');
+        const progressCompleted = document.querySelector('#progress-completed');
+        const deleteTask = document.querySelector('#delete-task');
+        const optionsMenu = document.querySelector('#options-menu');
         function getTd(str) {
             const td = document.createElement('td');
             td.innerText = str;
@@ -50,7 +59,21 @@
         }
         function onTaskOptionsClick(e) {
             const taskId = e.target.dataset.taskid;
-            alert(taskId);
+            optionsMenu.style.display = 'block';
+            progressNotStarted.onclick = () => {
+                const task = tasks.find(t => t.id === taskId);
+                task.progress = "Not Started";
+                renderTable(tasks);
+            }
+            progressCompleted.onclick = () => {
+                const task = tasks.find(t => t.id === taskId);
+                task.progress = "Completed";
+                renderTable(tasks);
+            }
+            deleteTask.onclick = () => {
+                tasks = tasks.filter(task => task.id !== taskId);
+                renderTable(tasks)
+            }
         }
         function renderTable(tasks) {
             // TODO: improve efficiency
@@ -101,7 +124,7 @@
                 const priority = document.getElementById('priorityInput').value;
                 const dueDate = document.getElementById('dateInput').value;
                 const id = Math.random() + Date.now();
-                const task = { title, priority, dueDate, id, progress: 'active' };
+                const task = { title, priority, dueDate, id, progress: 'Not Started' };
                 tasks.push(task);
                 renderTable(tasks);
                 taskModal.style.display = 'none';
