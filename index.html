@@ -32,12 +32,14 @@
         </div>
     </div>
     <div style="position: absolute; z-index: 300; display:none;" id="options-menu">
-        <span id="progress-not-started">Progress: Not started</span>
-        <span id="progress-completed">Progress: Completed</span>
-        <span id="delete-task">Delete</span>
+        <span id="progress-not-started">Progress: In Progress</span><br />
+        <span id="progress-completed">Progress: Completed</span><br />
+        <span id="delete-task">Delete</span><br />
     </div>
     <div style="width: 100%; display: flex; justify-content: center;">
         <div style="width: 40%;">
+            <div>Tasks</div>
+            <div id="filter-tasks">Filter</div>
             <table id="main-table"></table>
             <div style="display:flex; flex-direction: row-reverse; width: 100%">
                 <button id="add-task">Add Task</button>
@@ -52,6 +54,18 @@
         const progressCompleted = document.querySelector('#progress-completed');
         const deleteTask = document.querySelector('#delete-task');
         const optionsMenu = document.querySelector('#options-menu');
+        document.querySelector('#filter-tasks').onclick = () => {
+            const option = window.prompt('Enter option, 1 for All, 2 for Active, 3 for Completed', "1");
+            if (option == "1") {
+                renderTable(tasks);
+            } else if (option == "2") {
+                const tasksToRender = tasks.filter(t => t.progress === "In Progress");
+                renderTable(tasksToRender);
+            } else if (option == "3") {
+                const tasksToRender = tasks.filter(t => t.progress === "Completed");
+                renderTable(tasksToRender);
+            }
+        }
         function getTd(str) {
             const td = document.createElement('td');
             td.innerText = str;
@@ -62,7 +76,7 @@
             optionsMenu.style.display = 'block';
             progressNotStarted.onclick = () => {
                 const task = tasks.find(t => t.id === taskId);
-                task.progress = "Not Started";
+                task.progress = "In Progress";
                 optionsMenu.style.display = 'none';
                 renderTable(tasks);
             }
