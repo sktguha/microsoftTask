@@ -4,6 +4,15 @@
 </head>
 
 <body>
+    <div id="#task-modal" style="z-index: 300; position: absolute;left: 0;top: 0;background-color:white;width:100%;height:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        ">
+        <div style="margin: 30%; width: 40%; border: 4px solid lightgray;">
+            <form>Modal</form>
+        </div>
+    </div>
     <div style="width: 100%; display: flex; justify-content: center;">
         <div style="width: 40%;">
             <table id="main-table"></table>
@@ -14,7 +23,8 @@
     </div>
     <script>
         const mainTable = document.querySelector('#main-table');
-        const tasks = [{ title: "This is a test", priority: "Important", dueDate: "02/02/2021" }];
+        const tasks = [{ title: "This is a test", priority: "Important", dueDate: "02/02/2021", id: 8762348 }];
+        const taskModal = document.querySelector('#task-modal');
         function getTd(str) {
             const td = document.createElement('td');
             td.innerText = str;
@@ -37,6 +47,14 @@
                 tr.appendChild(getTd('...'));
                 mainTable.appendChild(tr);
             });
+        }
+        function getShowAndGetNewTaskDetails(id) {
+            let task;
+            // TODO: add edit functionality later
+            // if (id) {
+            //     task = tasks.find(task => task.id === id);
+            // }
+
         }
         function main() {
             renderTable(tasks);
