@@ -48,6 +48,10 @@
             td.innerText = str;
             return td;
         }
+        function onTaskOptionsClick(e) {
+            const taskId = e.target.dataset.taskid;
+            alert(taskId);
+        }
         function renderTable(tasks) {
             // TODO: improve efficiency
             const tasksToRender = tasks.sort((taskA, taskB) => {
@@ -71,7 +75,10 @@
                 tr.appendChild(getTd(task.title));
                 tr.appendChild(getTd(task.priority));
                 tr.appendChild(getTd(task.dueDate));
-                tr.appendChild(getTd('...'));
+                const optionsTd = getTd('...');
+                optionsTd.setAttribute('data-taskid', task.id);
+                optionsTd.onclick = onTaskOptionsClick;
+                tr.appendChild(optionsTd);
                 mainTable.appendChild(tr);
             });
         }
