@@ -109,14 +109,17 @@
             });
             mainTable.innerHTML = "";
             const th = document.createElement('th');
-            th.appendChild(getTd('Tasks'));
+            const taskTd = getTd('Tasks');
+            taskTd.style.width = '230px';
+            th.appendChild(taskTd);
             th.appendChild(getTd('Priority'));
             th.appendChild(getTd('Due'));
             th.appendChild(getTd('Filter'));
             mainTable.appendChild(th);
             tasksToRender.forEach((task) => {
                 const tr = document.createElement('tr');
-                tr.appendChild(getTd(task.title));
+                const tTd = getTd(task.title);
+                tr.appendChild(tTd);
                 tr.appendChild(getTd(task.priority));
                 tr.appendChild(getTd(task.dueDate));
                 const optionsTd = getTd('...');
