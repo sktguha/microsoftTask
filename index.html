@@ -63,15 +63,18 @@
             progressNotStarted.onclick = () => {
                 const task = tasks.find(t => t.id === taskId);
                 task.progress = "Not Started";
+                optionsMenu.style.display = 'none';
                 renderTable(tasks);
             }
             progressCompleted.onclick = () => {
                 const task = tasks.find(t => t.id === taskId);
                 task.progress = "Completed";
+                optionsMenu.style.display = 'none';
                 renderTable(tasks);
             }
             deleteTask.onclick = () => {
                 tasks = tasks.filter(task => task.id !== taskId);
+                optionsMenu.style.display = 'none';
                 renderTable(tasks)
             }
         }
