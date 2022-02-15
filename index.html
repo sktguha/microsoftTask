@@ -1,0 +1,49 @@
+<head>
+    <title>Task Creator</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div style="width: 100%; display: flex; justify-content: center;">
+        <div style="width: 80%;">
+            <table id="main-table"></table>
+            <div style="display:flex; flex-direction: row-reverse; width: 100%">
+                <button id="add-task">Add Task</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const mainTable = document.querySelector('#main-table');
+        const tasks = [{ title: "This is a test", priority: "Important", dueDate: "02/02/2021" }];
+        function getTd(str) {
+            const td = document.createElement('td');
+            td.innerText = str;
+            return td;
+        }
+        function renderTable(tasks) {
+            // TODO: improve efficiency
+            mainTable.innerHTML = "";
+            const th = document.createElement('th');
+            th.appendChild(getTd('Tasks'));
+            th.appendChild(getTd('Priority'));
+            th.appendChild(getTd('Due'));
+            th.appendChild(getTd('Filter'));
+            mainTable.appendChild(th);
+            tasks.forEach((task) => {
+                const tr = document.createElement('tr');
+                tr.appendChild(getTd(task.title));
+                tr.appendChild(getTd(task.priority));
+                tr.appendChild(getTd(task.dueDate));
+                tr.appendChild(getTd('...'));
+                mainTable.appendChild(tr);
+            });
+        }
+        function main() {
+            renderTable(tasks);
+            document.getElementById('add-task').onclick = function () {
+                alert('click task');
+            }
+        }
+        main();
+    </script>
+</body>
