@@ -58,7 +58,7 @@
             return td;
         }
         function onTaskOptionsClick(e) {
-            const taskId = e.target.dataset.taskid;
+            const taskId = Number(e.target.dataset.taskid);
             optionsMenu.style.display = 'block';
             progressNotStarted.onclick = () => {
                 const task = tasks.find(t => t.id === taskId);
