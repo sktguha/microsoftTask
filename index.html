@@ -40,7 +40,7 @@
     </div>
     <script>
         const mainTable = document.querySelector('#main-table');
-        const tasks = [{ title: "This is a test", priority: "Important", dueDate: "02/02/2021", id: 8762348 }];
+        const tasks = [{ title: "This is a test", priority: "Important", dueDate: "2021-02-02", id: 8762348 }];
         const taskModal = document.querySelector('#task-modal');
         function getTd(str) {
             const td = document.createElement('td');
@@ -82,9 +82,9 @@
                 e.preventDefault();
                 const title = document.getElementById('titleInput').value;
                 const priority = document.getElementById('priorityInput').value;
-                const date = document.getElementById('dateInput').value;
+                const dueDate = document.getElementById('dateInput').value;
                 const id = Math.random() + Date.now();
-                const task = { title, priority, date, id };
+                const task = { title, priority, dueDate, id };
                 tasks.push(task);
                 renderTable(tasks);
                 taskModal.style.display = 'none';
