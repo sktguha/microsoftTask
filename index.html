@@ -11,23 +11,23 @@
         ">
         <div style="margin: 30%; width: 40%; border: 4px solid lightgray;">
             <form id="task-input">
-                Title:
+                <span class="form-input">Title:</span>
                 <br />
-                <input required type="text" id="titleInput" placeholder="Enter title text" />
+                <input class="form-input" required type="text" id="titleInput" placeholder="Enter title text" />
                 <br />
-                Priority:
+                <span class="form-input">Priority:</span>
                 <br />
-                <select required id="priorityInput">
+                <select class="form-input" required id="priorityInput">
                     <option value="Important">Important</option>
                     <option value="Medium">Medium</option>
                 </select>
                 <br />
-                Due Date:
+                <span class="form-input">Due Date:</span>
                 <br />
-                <input required type="date" id="dateInput" />
+                <input class="form-input" required type="date" id="dateInput" />
                 <br />
-                <input type="submit" />
-                <input type="button" value="cancel" id="hide-modal" />
+                <input class="form-input" type="submit" />
+                <input class="form-input" type="button" value="cancel" id="hide-modal" />
             </form>
         </div>
     </div>
@@ -44,8 +44,10 @@
                 <div><strong>Tasks</strong></div>
                 <div id="filter-tasks">Filter</div>
             </div>
-            <table id="main-table" style="border: 2px solid gray; width:100%;"></table>
-            <div style="display:flex; flex-direction: row-reverse; width: 100%">
+            <table style="border: 2px solid gray; width:100%;">
+                <tbody id="main-table"></tbody>
+            </table>
+            <div style="display:flex; flex-direction: row-reverse; width: 100%; margin-top: 4px;">
                 <button id="add-task">Add Task</button>
             </div>
         </div>
@@ -114,7 +116,7 @@
             th.appendChild(taskTd);
             th.appendChild(getTd('Priority'));
             th.appendChild(getTd('Due'));
-            th.appendChild(getTd('Filter'));
+            th.appendChild(getTd('Options'));
             mainTable.appendChild(th);
             tasksToRender.forEach((task) => {
                 const tr = document.createElement('tr');
